@@ -60,4 +60,8 @@ public class Department implements Serializable {
         return "Department: ID - " + id + ", nome - " + name;
     }
 
+    public Department instantiateDepartment() {
+        return null;
+    }
+
 }
