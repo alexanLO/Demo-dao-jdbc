@@ -27,6 +27,12 @@ public class Program02 {
         }
         
         System.out.println();
+
+        department = new Department(null, "Roupas de Banho");
+        departmentDao.insert(department);
+        System.out.println("Foi inserido um novo ID: " + department.getId());
+
+        System.out.println();
         
     }
 }

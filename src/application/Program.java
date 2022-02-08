@@ -41,7 +41,7 @@ public class Program {
         System.out.println("=== Teste 04: Seller Insert ===");
         Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", new Date(), 3000.0, department);
         sellerDao.insert(newSeller);
-        System.out.println("Inserido! Novo id = " + newSeller.getId());
+        System.out.println("Foi inserido um novo ID: " + newSeller.getId());
 
         System.out.println();
 
