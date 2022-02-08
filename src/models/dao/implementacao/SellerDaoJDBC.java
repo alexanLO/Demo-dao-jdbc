@@ -35,7 +35,7 @@ public class SellerDaoJDBC implements SellerDao {
                             + "(Name, Email, BirthDate, BaseSalary, DepartmentId)"
                             + "VALUES"
                             + "(?, ?, ?, ?, ?)",
-                            st.RETURN_GENERATED_KEYS);
+                    st.RETURN_GENERATED_KEYS);
 
             st.setString(1, seller.getName());
             st.setString(2, seller.getEmail());
@@ -45,20 +45,20 @@ public class SellerDaoJDBC implements SellerDao {
 
             int rowsEffected = st.executeUpdate();
 
-            if(rowsEffected > 0){
+            if (rowsEffected > 0) {
                 ResultSet rs = st.getGeneratedKeys();
-                if(rs.next()){
+                if (rs.next()) {
                     int id = rs.getInt(1);
                     seller.setId(id);
                 }
                 DB.closeResultSet(rs);
-            }else {
+            } else {
                 throw new DbException("Erro inesperado! Nenhuma linha foi afetada");
             }
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }finally{
+        } finally {
             DB.closeStatement(st);
         }
 
@@ -70,9 +70,9 @@ public class SellerDaoJDBC implements SellerDao {
 
         try {
             st = connection.prepareStatement(
-               " UPDATE seller "
-                +"SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? " 
-                +"WHERE Id = ? " );
+                    " UPDATE seller "
+                            + "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? "
+                            + "WHERE Id = ? ");
 
             st.setString(1, seller.getName());
             st.setString(2, seller.getEmail());
@@ -85,7 +85,7 @@ public class SellerDaoJDBC implements SellerDao {
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }finally{
+        } finally {
             DB.closeStatement(st);
         }
 
@@ -93,8 +93,20 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void deleteById(Integer id) {
-        // TODO Auto-generated method stub
+        PreparedStatement st = null;
 
+        try {
+            st = connection.prepareStatement("DELETE FROM seller WHERE Id = ?");
+
+            st.setInt(1, id);
+
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+           throw new DbException(e.getMessage());
+        }finally{
+            DB.closeStatement(st);
+        }
     }
 
     @Override
