@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Program02",
+            "request": "launch",
+            "mainClass": "application.Program02",
+            "projectName": "Demo-dao-jdbc_eb64c22d"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
