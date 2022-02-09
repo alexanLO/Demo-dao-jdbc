@@ -41,5 +41,9 @@ public class Program02 {
 
         System.out.println();
         
+        System.out.print("Entre com o ID que deseja deletar: ");
+        int id = sc.nextInt();
+        departmentDao.deleteById(id);
+        System.out.println("ID excluída com sucesso!");
     }
 }

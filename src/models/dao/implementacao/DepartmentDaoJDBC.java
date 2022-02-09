@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -80,8 +78,20 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public void deleteById(Integer id) {
-        // TODO Auto-generated method stub
+        PreparedStatement st = null;
 
+        try {
+            st = connection.prepareStatement("DELETE FROM department WHERE Id = ?");
+
+            st.setInt(1, id);
+
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+           throw new DbException(e.getMessage());
+        }finally{
+            DB.closeStatement(st);
+        }
     }
 
     @Override
