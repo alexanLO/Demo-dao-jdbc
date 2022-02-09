@@ -33,6 +33,13 @@ public class Program02 {
         System.out.println("Foi inserido um novo ID: " + department.getId());
 
         System.out.println();
+
+        department = departmentDao.findById(5);
+        department.setName("Eletrodomesticos");
+        departmentDao.update(department);
+        System.out.println("Update concluído!");
+
+        System.out.println();
         
     }
 }
